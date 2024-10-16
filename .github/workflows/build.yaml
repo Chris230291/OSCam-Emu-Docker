@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Allows you to manually trigger the action from the Actions tab
   push:  # Automatically triggers on every commit to the main branch
     branches:
-      - main  # Replace with the branch you want to monitor, e.g., 'main' or 'master'
+      - master  # Replace with the branch you want to monitor, e.g., 'main' or 'master'
 
 jobs:
   build:
