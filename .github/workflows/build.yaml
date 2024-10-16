@@ -2,8 +2,9 @@ name: Build and Push Docker Images
 
 on:
   workflow_dispatch:  # Allows you to manually trigger the action from the Actions tab
-  schedule:
-    - cron: '0 0 * * *'  # Runs at midnight UTC every day
+  push:  # Automatically triggers on every commit to the main branch
+    branches:
+      - main  # Replace with the branch you want to monitor, e.g., 'main' or 'master'
 
 jobs:
   build:
@@ -27,44 +28,13 @@ jobs:
 
           echo "latest_commit=$LATEST_COMMIT" >> $GITHUB_ENV
 
-      # Fetch the latest tag from Docker Hub
-      - name: Get Latest Docker Tag
-        id: latest_tag
-        run: |
-          LATEST_TAG=$(curl -s --retry 5 --retry-delay 5 --retry-max-time 30 -X GET https://hub.docker.com/v2/repositories/chris230291/oscam-emu/tags?page_size=2 \
-            | jq -r '.results[]["name"]' \
-            | grep -v 'latest' \
-            | head -n 1 || true)
-
-          # Check if LATEST_TAG is empty
-          if [ -z "$LATEST_TAG" ]; then
-            echo "No non-latest tag found or tag is empty. Continuing with default value."
-            LATEST_TAG="latest"
-          fi
-
-          echo "latest_tag=$LATEST_TAG" >> $GITHUB_ENV
-
-      # Check if the latest commit is different from the latest tag
-      - name: Compare Commit and Tag
-        id: compare
-        run: |
-          if [ "${{ env.latest_commit }}" != "${{ env.latest_tag }}" ]; then
-            echo "Update detected"
-            echo "run_build=true" >> $GITHUB_ENV
-          else
-            echo "No update detected"
-            echo "run_build=false" >> $GITHUB_ENV
-          fi
-
       # Set up QEMU for emulation
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
-        if: env.run_build == 'true'
 
       # Set up Docker Buildx for multi-platform builds
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-        if: env.run_build == 'true'
 
       # Log in to Docker Hub
       - name: Login to Docker Hub
@@ -72,7 +42,6 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-        if: env.run_build == 'true'
 
       # Build and push multi-arch images
       - name: Build and push
@@ -82,6 +51,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            chris230291/oscam-emu:${{ env.latest_commit }}
-            chris230291/oscam-emu:latest
-        if: env.run_build == 'true'
+            chris230291/ncam:${{ env.latest_commit }}
+            chris230291/ncam:latest
