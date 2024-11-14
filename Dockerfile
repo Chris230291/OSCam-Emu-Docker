@@ -1,6 +1,6 @@
 FROM lscr.io/linuxserver/oscam:latest
 
-RUN curl -s -o /tmp/oscam-emu.patch https://raw.githubusercontent.com/oscam-emu/oscam-emu/refs/heads/master/oscam-emu.patch
+RUN curl -s -o /tmp/oscam-emu.patch https://raw.githubusercontent.com/OpenPLi/openpli-oe-core/18dc8bc4b6079d38069b912f136eb66325ac4d6e/meta-openpli/recipes-openpli/enigma2-softcams/enigma2-plugin-softcams-oscam-emu/oscam-emu.patch
 
 RUN \
   echo "**** install build packages ****" && \
