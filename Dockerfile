@@ -14,11 +14,18 @@ RUN \
   git
 
 RUN \
-  echo "**** compile oscam ****" && \
+  echo "**** clone oscam ****" && \
   mkdir -p /tmp/oscam && \
-  git clone https://git.streamboard.tv/common/oscam.git /tmp/oscam && \
+  git clone https://git.streamboard.tv/common/oscam.git /tmp/oscam
+
+RUN \
+  echo "**** patch oscam ****" && \
   cd /tmp/oscam && \
-  git apply /tmp/oscam-emu.patch && \
+  git apply /tmp/oscam-emu.patch
+
+RUN \
+  echo "**** compile oscam ****" && \
+  cd /tmp/oscam && \
   ./config.sh \
   --enable all \
   --disable \
