@@ -1,6 +1,7 @@
 FROM lscr.io/linuxserver/oscam:latest
 
-RUN curl -s -o /tmp/oscam-emu.patch https://raw.githubusercontent.com/oscam-emu/oscam-emu/refs/heads/master/oscam-emu.patch
+# RUN curl -s -o /tmp/oscam-emu.patch https://raw.githubusercontent.com/oscam-emu/oscam-emu/refs/heads/master/oscam-emu.patch
+COPY /oscam-emu.patch /tmp/oscam-emu.patch
 
 RUN \
   echo "**** install build packages ****" && \
