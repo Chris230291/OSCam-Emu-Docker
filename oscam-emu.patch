@@ -1,5 +1,8 @@
+patch version: 2.24.12-11860-802 (850fde71)
+patch date: 2024-12-10 01:18:51 UTC (+00:00)
+---
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index eb09fcd..4498084 100644
+index eb09fcd3..44980840 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -534,6 +534,22 @@ endif (CONFIG_STREAMRELAY MATCHES "Y" AND NOT MODULE_STREAMRELAY EQUAL 1)
@@ -63,7 +66,7 @@ index eb09fcd..4498084 100644
 +
  message (STATUS "")
 diff --git a/Distribution/doc/html/oscam.server.5.html b/Distribution/doc/html/oscam.server.5.html
-index 3fb60c5..48fc01d 100644
+index 3fb60c56..48fc01d2 100644
 --- a/Distribution/doc/html/oscam.server.5.html
 +++ b/Distribution/doc/html/oscam.server.5.html
 @@ -840,6 +840,13 @@ set reader's CCcam reshare hop, default:0
@@ -81,7 +84,7 @@ index 3fb60c5..48fc01d 100644
  <DL COMPACT><DT><DD>
  1 = send keepalive messages to keep connection to remote CCCam server up, default:0
 diff --git a/Distribution/doc/man/oscam.server.5 b/Distribution/doc/man/oscam.server.5
-index 4b5db81..3a94758 100644
+index 4b5db81e..3a94758d 100644
 --- a/Distribution/doc/man/oscam.server.5
 +++ b/Distribution/doc/man/oscam.server.5
 @@ -649,6 +649,11 @@ set reader's CCcam reshare hop, default:0
@@ -97,7 +100,7 @@ index 4b5db81..3a94758 100644
  .RS 3n
  1 = send keepalive messages to keep connection to remote CCCam server up, default:0
 diff --git a/Distribution/doc/txt/oscam.server.txt b/Distribution/doc/txt/oscam.server.txt
-index 3d333a9..08b173e 100644
+index 3d333a93..08b173ed 100644
 --- a/Distribution/doc/txt/oscam.server.txt
 +++ b/Distribution/doc/txt/oscam.server.txt
 @@ -478,6 +478,9 @@ DESCRIPTIONS
@@ -111,7 +114,7 @@ index 3d333a9..08b173e 100644
  	  1 = send keepalive messages to keep connection to remote CCCam server up, default:0
  
 diff --git a/Makefile b/Makefile
-index 0f5c86c..82c97b2 100644
+index e4a98aae..aafd79ce 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -32,6 +32,9 @@ ifeq "$(shell ./config.sh --enabled WITH_SSL)" "Y"
@@ -123,8 +126,8 @@ index 0f5c86c..82c97b2 100644
 +endif
  ifdef USE_SSL
  	override USE_LIBCRYPTO=1
- endif
-@@ -366,6 +369,32 @@ SRC-$(CONFIG_CS_CACHEEX) += module-cccam-cacheex.c
+ 	SSL_HEADER = $(shell find $(TOOLCHAIN_INC_DIR)/.. -name opensslv.h -print | tail -n 1)
+@@ -370,6 +373,32 @@ SRC-$(CONFIG_CS_CACHEEX) += module-cccam-cacheex.c
  SRC-$(CONFIG_MODULE_CCCAM) += module-cccam.c
  SRC-$(CONFIG_MODULE_CCCSHARE) += module-cccshare.c
  SRC-$(CONFIG_MODULE_CONSTCW) += module-constcw.c
@@ -158,7 +161,7 @@ index 0f5c86c..82c97b2 100644
  SRC-$(CONFIG_CW_CYCLE_CHECK) += module-cw-cycle-check.c
  SRC-$(CONFIG_WITH_AZBOX) += module-dvbapi-azbox.c
 diff --git a/README.config b/README.config
-index 03c70f7..9b99c3c 100644
+index 03c70f7d..9b99c3c4 100644
 --- a/README.config
 +++ b/README.config
 @@ -81,7 +81,7 @@ Examples:
@@ -171,7 +174,7 @@ index 03c70f7..9b99c3c 100644
        readers: READER_NAGRA READER_NAGRA_MERLIN READER_IRDETO READER_CONAX READER_CRYPTOWORKS READER_SECA READER_VIACCESS READER_VIDEOGUARD READER_DRE READER_TONGFANG READER_BULCRYPT READER_GRIFFIN READER_DGCRYPT
   card_readers: CARDREADER_PHOENIX CARDREADER_INTERNAL CARDREADER_SC8IN1 CARDREADER_MP35 CARDREADER_SMARGO CARDREADER_DB2COM CARDREADER_STAPI CARDREADER_STAPI5 CARDREADER_STINGER CARDREADER_DRECAS
 diff --git a/README.md b/README.md
-index 8d1c6e9..c3cacec 100644
+index 8d1c6e93..13cc08c3 100644
 --- a/README.md
 +++ b/README.md
 @@ -1,14 +1,18 @@
@@ -179,11 +182,11 @@ index 8d1c6e9..c3cacec 100644
 -============================================
 +OSCam-Emu: Open Source CAM with Emulator
 +========================================
-+[![build](https://github.com/oscam-emu/oscam-patched/actions/workflows/build.yml/badge.svg)](https://github.com/oscam-emu/oscam-patched/actions/workflows/build.yml)
++[![build](https://github.com/oscam-mirror/oscam-emu/actions/workflows/build-oscam.yml/badge.svg)](https://github.com/oscam-mirror/oscam-emu/actions/workflows/build-oscam.yml) [![sync](https://github.com/oscam-mirror/oscam-emu/actions/workflows/sync-gitlab.yml/badge.svg)](https://github.com/oscam-mirror/oscam-emu/actions/workflows/sync-gitlab.yml) [![patch](https://github.com/oscam-mirror/oscam-emu/actions/workflows/create-patch.yml/badge.svg)](https://github.com/oscam-mirror/oscam-emu/actions/workflows/create-patch.yml)
  
 +Wiki
 +====
-+https://github.com/oscam-emu/oscam-patched/wiki
++https://git.streamboard.tv/common/oscam/-/wikis/home
  
  License
  =======
@@ -213,7 +216,7 @@ index 8d1c6e9..c3cacec 100644
 -OSCam history is accessible through Trac timeline at:
 -   https://git.streamboard.tv/common/oscam/-/commits/master
 +OSCam-Emu history is accessible through GitHub history at:
-+   https://github.com/oscam-emu/oscam-patched/commits/master/
++   https://github.com/oscam-mirror/oscam-emu/commits/master/
  
  
  Repositories
@@ -221,7 +224,7 @@ index 8d1c6e9..c3cacec 100644
  
  GIT repository:
 -   git clone https://git.streamboard.tv/common/oscam.git oscam
-+   git clone https://github.com/oscam-emu/oscam-patched.git
++   git clone https://github.com/oscam-mirror/oscam-emu.git
  
  
 -Building OSCam from source
@@ -236,7 +239,7 @@ index 8d1c6e9..c3cacec 100644
 - - Run `make config` to choose the features you want.
 -
 - - Run `make` to compile OSCam.
-+https://github.com/oscam-emu/oscam-patched/wiki/Building-OSCam-Emu
++https://git.streamboard.tv/common/oscam/-/wikis/BuildingOscam
  
  For more information and examples on using the build system, please
  see README.build and README.config files.
@@ -270,24 +273,40 @@ index 8d1c6e9..c3cacec 100644
    - libcrypto (libssl) - 'make USE_LIBCRYPTO=1'
    - libusb             - 'make USE_LIBUSB=1'
    - PCSC               - 'make USE_PCSC=1'
-@@ -104,12 +101,12 @@ Help and Support
+@@ -89,12 +86,10 @@ OSCam supports building with the following external dependencies:
+   - AZBOX support      - 'make USE_AZBOX=1'
+ 
+ For STAPI support you need to download liboscam_stapi.a library and place
+-it in stapi directory under oscam/ root dir. liboscam_stapi.a can be downloaded
+-from: https://board.streamboard.tv
++it in stapi directory under oscam/ root dir.
+ 
+ For STAPI5 support you need to download liboscam_stapi5.a library and place
+-it in stapi directory under oscam/ root dir. liboscam_stapi5.a can be downloaded
+-from: https://board.streamboard.tv
++it in stapi directory under oscam/ root dir.
+ 
+ For more information and examples on using the build system, run `make help`.
+ 
+@@ -104,12 +99,12 @@ Help and Support
  
  man pages and configuration examples are in Distribution/doc directory.
  
 -You may visit our Trac system for tracking and filling bug reports.
 -   https://git.streamboard.tv/common/oscam/-/issues/new
 +You may visit our GitHub system for tracking and filling bug reports.
-+   https://github.com/oscam-emu/oscam-patched/issues/new
++   https://github.com/oscam-mirror/oscam-emu/issues/new
  
  If you experience any problems with OSCam, feel free to post in our support
  forum under (mainly German and English language) at:
-    https://board.streamboard.tv/forum/
+-   https://board.streamboard.tv/forum/
++   https://github.com/oscam-mirror/oscam-emu/discussions
  
  Configuration wiki:
 -   https://wiki.streamboard.tv/wiki/OSCam
-+   https://github.com/oscam-emu/oscam-patched/wiki/OSCam-Emu-configuration
++   https://wiki.streamboard.tv/wiki/OSCam/de/Config/oscam.conf
 diff --git a/config.h b/config.h
-index f48ca1d..1139180 100644
+index f48ca1da..1139180d 100644
 --- a/config.h
 +++ b/config.h
 @@ -1,6 +1,8 @@
@@ -309,7 +328,7 @@ index f48ca1d..1139180 100644
  //#define WITH_NEUTRINO 1
  #define READ_SDT_CHARSETS 1
 diff --git a/config.sh b/config.sh
-index 70ca71a..65b44bd 100755
+index 70ca71ad..83e3c948 100755
 --- a/config.sh
 +++ b/config.sh
 @@ -1,6 +1,6 @@
@@ -380,7 +399,7 @@ index 70ca71a..65b44bd 100755
  		2> ${tempfile}
  
  	opt=${?}
-@@ -897,7 +904,8 @@ do
+@@ -897,11 +904,12 @@ do
  	;;
  	'-v'|'--oscam-version')
  		version=`grep '^#define CS_VERSION' globals.h | cut -d\" -f2`
@@ -390,8 +409,13 @@ index 70ca71a..65b44bd 100755
  		break
  	;;
  	'-c'|'--oscam-commit')
+-		sha=`git log 2>/dev/null | sed -n 1p | cut -d ' ' -f2 | cut -c1-8`
++		sha=`git log --no-merges 2>/dev/null | sed -n 1p | cut -d ' ' -f2 | cut -c1-8`
+ 		echo $sha
+ 		break
+ 	;;
 diff --git a/csctapi/cardreaders.h b/csctapi/cardreaders.h
-index 8b6c309..35f38c6 100644
+index 8b6c309a..35f38c6c 100644
 --- a/csctapi/cardreaders.h
 +++ b/csctapi/cardreaders.h
 @@ -14,5 +14,6 @@ extern const struct s_cardreader cardreader_smartreader;
@@ -402,18 +426,21 @@ index 8b6c309..35f38c6 100644
  
  #endif
 diff --git a/globals.h b/globals.h
-index 3b02d87..90f2cb5 100644
+index c2488d88..3e15dd20 100644
 --- a/globals.h
 +++ b/globals.h
-@@ -368,7 +368,7 @@
+@@ -368,9 +368,9 @@
  /* ===========================
   *			constants
   * =========================== */
 -#define SCM_URL					"https://git.streamboard.tv/common/oscam"
-+#define SCM_URL					"https://github.com/oscam-emu/oscam-patched"
++#define SCM_URL					"https://github.com/oscam-mirror/oscam-emu"
  #define WIKI_URL				"https://wiki.streamboard.tv/wiki"
- #define BOARD_URL				"https://board.streamboard.tv"
+-#define BOARD_URL				"https://board.streamboard.tv"
++#define BOARD_URL				"https://github.com/oscam-mirror/oscam-emu/discussions"
  #ifndef CS_VERSION
+ #define CS_VERSION				"2.24.12-11860"
+ #endif
 @@ -406,14 +406,18 @@
  #define CS_ECM_RINGBUFFER_MAX	0x10	// max size for ECM last responsetimes ringbuffer. Keep this set to power of 2 values!
  
@@ -456,7 +483,7 @@ index 3b02d87..90f2cb5 100644
  } S_ENTITLEMENT;
  
  struct s_client;
-@@ -1757,6 +1769,7 @@ struct s_reader										// contains device info, reader info and card info
+@@ -1756,6 +1768,7 @@ struct s_reader										// contains device info, reader info and card info
  	char			cc_build[7];					// cccam build number
  	int8_t			cc_maxhops;						// cccam max distance
  	int8_t			cc_mindown;						// cccam min downhops
@@ -464,7 +491,7 @@ index 3b02d87..90f2cb5 100644
  	uint32_t		cc_id;
  	int8_t			cc_keepalive;
  	int8_t			cc_hop;							// For non-cccam reader: hop for virtual cards
-@@ -1933,6 +1946,11 @@ struct s_reader										// contains device info, reader info and card info
+@@ -1932,6 +1945,11 @@ struct s_reader										// contains device info, reader info and card info
  #endif
  #ifdef MODULE_GHTTP
  	uint8_t			ghttp_use_ssl;
@@ -516,7 +543,7 @@ index 3b02d87..90f2cb5 100644
 +
  #endif
 diff --git a/module-cacheex.c b/module-cacheex.c
-index 9287aed..04e2769 100644
+index 9287aed3..04e27699 100644
 --- a/module-cacheex.c
 +++ b/module-cacheex.c
 @@ -921,7 +921,9 @@ static int32_t cacheex_add_to_cache_int(struct s_client *cl, ECM_REQUEST *er, in
@@ -542,7 +569,7 @@ index 9287aed..04e2769 100644
  		cs_log_dbg(D_CACHEEX, "push received ecm with null odd/even byte from %s", csp ? "csp" : username(cl));
  		cl->cwcacheexerr++;
 diff --git a/module-camd35-cacheex.c b/module-camd35-cacheex.c
-index 68c24d7..f7258a0 100644
+index 68c24d75..f7258a02 100644
 --- a/module-camd35-cacheex.c
 +++ b/module-camd35-cacheex.c
 @@ -670,7 +670,7 @@ void camd35_cacheex_feature_trigger(struct s_client *cl, int32_t feature, uint8_
@@ -555,7 +582,7 @@ index 68c24d7..f7258a0 100644
  			// bitfield
  			i2b_buf(2, feature, payload + i);
 diff --git a/module-cccam-cacheex.c b/module-cccam-cacheex.c
-index 6878d32..5acc7b9 100644
+index 6878d327..5acc7b9a 100644
 --- a/module-cccam-cacheex.c
 +++ b/module-cccam-cacheex.c
 @@ -660,7 +660,7 @@ void cc_cacheex_feature_trigger(struct s_client *cl, int32_t feature, uint8_t mo
@@ -568,7 +595,7 @@ index 6878d32..5acc7b9 100644
  			// bitfield
  			i2b_buf(2, feature, payload + i);
 diff --git a/module-cccam.c b/module-cccam.c
-index c89815c..febbbad 100644
+index c89815c8..febbbad0 100644
 --- a/module-cccam.c
 +++ b/module-cccam.c
 @@ -1009,7 +1009,7 @@ int32_t cc_send_cli_data(struct s_client *cl)
@@ -600,7 +627,7 @@ index c89815c..febbbad 100644
  				xcard = ncard; // remember card (D+ / 1810 fix) if request has no provider, but card has
  			}
 diff --git a/module-cw-cycle-check.c b/module-cw-cycle-check.c
-index c8617d3..f9cc810 100644
+index c8617d32..f9cc8108 100644
 --- a/module-cw-cycle-check.c
 +++ b/module-cw-cycle-check.c
 @@ -123,7 +123,9 @@ static uint8_t checkvalidCW(ECM_REQUEST *er)
@@ -615,7 +642,7 @@ index c8617d3..f9cc810 100644
  
  	if(er->rc == E_NOTFOUND)
 diff --git a/module-dvbapi-azbox.c b/module-dvbapi-azbox.c
-index 7387f02..321f19e 100644
+index 7387f02d..321f19e8 100644
 --- a/module-dvbapi-azbox.c
 +++ b/module-dvbapi-azbox.c
 @@ -312,7 +312,9 @@ void azbox_send_dcw(struct s_client *client, ECM_REQUEST *er)
@@ -630,7 +657,7 @@ index 7387f02..321f19e 100644
  			memcpy(demux[0].last_cw[0][n], er->cw + (n * 8), 8);
  			memcpy(openxcas_cw + (n * 8), er->cw + (n * 8), 8);
 diff --git a/module-dvbapi-mca.c b/module-dvbapi-mca.c
-index 8b4d44d..cc399e4 100644
+index 8b4d44d5..cc399e40 100644
 --- a/module-dvbapi-mca.c
 +++ b/module-dvbapi-mca.c
 @@ -601,8 +601,10 @@ void mca_send_dcw(struct s_client *client, ECM_REQUEST *er)
@@ -646,7 +673,7 @@ index 8b4d44d..cc399e4 100644
  			memcpy(demux[0].last_cw[0][n], er->cw + (n * 8), 8);
  			memcpy(openxcas_cw + (n * 8), er->cw + (n * 8), 8);
 diff --git a/module-dvbapi-stapi.c b/module-dvbapi-stapi.c
-index e136091..2264bfc 100644
+index e136091d..2264bfc2 100644
 --- a/module-dvbapi-stapi.c
 +++ b/module-dvbapi-stapi.c
 @@ -730,8 +730,10 @@ int32_t stapi_write_cw(int32_t demux_id, uint8_t *cw, uint16_t *STREAMpids, int3
@@ -662,7 +689,7 @@ index e136091..2264bfc 100644
  			for(n = 0; n < PTINUM; n++)
  			{
 diff --git a/module-dvbapi-stapi5.c b/module-dvbapi-stapi5.c
-index 2adf451..76f0a6f 100644
+index 2adf4518..76f0a6ff 100644
 --- a/module-dvbapi-stapi5.c
 +++ b/module-dvbapi-stapi5.c
 @@ -731,8 +731,10 @@ int32_t stapi_write_cw(int32_t demux_id, uint8_t *cw, uint16_t *STREAMpids, int3
@@ -678,7 +705,7 @@ index 2adf451..76f0a6f 100644
  			ErrorCode = oscam_sttkd_KeyWrite(tkd_desc_info[demux[demux_id].dev_index].key_hndl, l, cw + (l * 8));
  
 diff --git a/module-dvbapi.c b/module-dvbapi.c
-index 1ccdb46..2f0fcea 100644
+index 1ccdb46e..2f0fcea7 100644
 --- a/module-dvbapi.c
 +++ b/module-dvbapi.c
 @@ -1883,7 +1883,14 @@ void dvbapi_start_emm_filter(int32_t demux_id)
@@ -938,7 +965,7 @@ index 1ccdb46..2f0fcea 100644
  		return 5;
  	}
 diff --git a/module-dvbapi.h b/module-dvbapi.h
-index 12e9dab..86eae69 100644
+index 12e9dab5..86eae695 100644
 --- a/module-dvbapi.h
 +++ b/module-dvbapi.h
 @@ -336,6 +336,9 @@ typedef struct filter_s
@@ -963,7 +990,7 @@ index 12e9dab..86eae69 100644
  typedef struct s_emmpid
 diff --git a/module-emulator-biss.c b/module-emulator-biss.c
 new file mode 100644
-index 0000000..a6b0c9e
+index 00000000..a6b0c9e6
 --- /dev/null
 +++ b/module-emulator-biss.c
 @@ -0,0 +1,883 @@
@@ -1852,7 +1879,7 @@ index 0000000..a6b0c9e
 +#endif // WITH_EMU
 diff --git a/module-emulator-biss.h b/module-emulator-biss.h
 new file mode 100644
-index 0000000..0f5900c
+index 00000000..0f5900cc
 --- /dev/null
 +++ b/module-emulator-biss.h
 @@ -0,0 +1,22 @@
@@ -1880,7 +1907,7 @@ index 0000000..0f5900c
 +#endif // MODULE_EMULATOR_BISS_H
 diff --git a/module-emulator-cryptoworks.c b/module-emulator-cryptoworks.c
 new file mode 100644
-index 0000000..df6509a
+index 00000000..df6509ac
 --- /dev/null
 +++ b/module-emulator-cryptoworks.c
 @@ -0,0 +1,688 @@
@@ -2574,7 +2601,7 @@ index 0000000..df6509a
 +#endif // WITH_EMU
 diff --git a/module-emulator-cryptoworks.h b/module-emulator-cryptoworks.h
 new file mode 100644
-index 0000000..c2424e2
+index 00000000..c2424e24
 --- /dev/null
 +++ b/module-emulator-cryptoworks.h
 @@ -0,0 +1,10 @@
@@ -2590,7 +2617,7 @@ index 0000000..c2424e2
 +#endif // MODULE_EMULATOR_CRYPTOWORKS_H
 diff --git a/module-emulator-director.c b/module-emulator-director.c
 new file mode 100644
-index 0000000..c8c28b9
+index 00000000..c8c28b9c
 --- /dev/null
 +++ b/module-emulator-director.c
 @@ -0,0 +1,644 @@
@@ -3240,7 +3267,7 @@ index 0000000..c8c28b9
 +#endif // WITH_EMU
 diff --git a/module-emulator-director.h b/module-emulator-director.h
 new file mode 100644
-index 0000000..de430cf
+index 00000000..de430cf2
 --- /dev/null
 +++ b/module-emulator-director.h
 @@ -0,0 +1,11 @@
@@ -3257,7 +3284,7 @@ index 0000000..de430cf
 +#endif // MODULE_EMULATOR_DIRECTOR_H
 diff --git a/module-emulator-irdeto.c b/module-emulator-irdeto.c
 new file mode 100644
-index 0000000..c9df970
+index 00000000..c9df9708
 --- /dev/null
 +++ b/module-emulator-irdeto.c
 @@ -0,0 +1,602 @@
@@ -3865,7 +3892,7 @@ index 0000000..c9df970
 +#endif // WITH_EMU
 diff --git a/module-emulator-irdeto.h b/module-emulator-irdeto.h
 new file mode 100644
-index 0000000..e13af0a
+index 00000000..e13af0a0
 --- /dev/null
 +++ b/module-emulator-irdeto.h
 @@ -0,0 +1,15 @@
@@ -3886,7 +3913,7 @@ index 0000000..e13af0a
 +#endif // MODULE_EMULATOR_IRDETO_H
 diff --git a/module-emulator-nagravision.c b/module-emulator-nagravision.c
 new file mode 100644
-index 0000000..a097871
+index 00000000..a0978713
 --- /dev/null
 +++ b/module-emulator-nagravision.c
 @@ -0,0 +1,376 @@
@@ -4268,7 +4295,7 @@ index 0000000..a097871
 +#endif // WITH_EMU
 diff --git a/module-emulator-nagravision.h b/module-emulator-nagravision.h
 new file mode 100644
-index 0000000..31810eb
+index 00000000..31810eb0
 --- /dev/null
 +++ b/module-emulator-nagravision.h
 @@ -0,0 +1,10 @@
@@ -4284,7 +4311,7 @@ index 0000000..31810eb
 +#endif // MODULE_EMULATOR_NAGRAVISION_H
 diff --git a/module-emulator-omnicrypt.c b/module-emulator-omnicrypt.c
 new file mode 100644
-index 0000000..805926d
+index 00000000..805926db
 --- /dev/null
 +++ b/module-emulator-omnicrypt.c
 @@ -0,0 +1,72 @@
@@ -4362,7 +4389,7 @@ index 0000000..805926d
 +#endif // WITH_EMU
 diff --git a/module-emulator-omnicrypt.h b/module-emulator-omnicrypt.h
 new file mode 100644
-index 0000000..3af8915
+index 00000000..3af8915c
 --- /dev/null
 +++ b/module-emulator-omnicrypt.h
 @@ -0,0 +1,10 @@
@@ -4378,7 +4405,7 @@ index 0000000..3af8915
 +#endif // MODULE_EMULATOR_OMNICRYPT_H
 diff --git a/module-emulator-osemu.c b/module-emulator-osemu.c
 new file mode 100644
-index 0000000..a3f8db3
+index 00000000..a3f8db3f
 --- /dev/null
 +++ b/module-emulator-osemu.c
 @@ -0,0 +1,986 @@
@@ -5370,7 +5397,7 @@ index 0000000..a3f8db3
 +#endif // WITH_EMU
 diff --git a/module-emulator-osemu.h b/module-emulator-osemu.h
 new file mode 100644
-index 0000000..a83dc64
+index 00000000..a83dc64a
 --- /dev/null
 +++ b/module-emulator-osemu.h
 @@ -0,0 +1,96 @@
@@ -5472,7 +5499,7 @@ index 0000000..a83dc64
 +#endif // MODULE_EMULATOR_H_
 diff --git a/module-emulator-powervu.c b/module-emulator-powervu.c
 new file mode 100644
-index 0000000..810fcec
+index 00000000..810fcecf
 --- /dev/null
 +++ b/module-emulator-powervu.c
 @@ -0,0 +1,2795 @@
@@ -8273,7 +8300,7 @@ index 0000000..810fcec
 +#endif // WITH_EMU
 diff --git a/module-emulator-powervu.h b/module-emulator-powervu.h
 new file mode 100644
-index 0000000..b50d208
+index 00000000..b50d2088
 --- /dev/null
 +++ b/module-emulator-powervu.h
 @@ -0,0 +1,63 @@
@@ -8342,7 +8369,7 @@ index 0000000..b50d208
 +#endif // MODULE_EMULATOR_POWERVU_H
 diff --git a/module-emulator-viaccess.c b/module-emulator-viaccess.c
 new file mode 100644
-index 0000000..b5fea65
+index 00000000..b5fea651
 --- /dev/null
 +++ b/module-emulator-viaccess.c
 @@ -0,0 +1,1183 @@
@@ -9531,7 +9558,7 @@ index 0000000..b5fea65
 +#endif // WITH_EMU
 diff --git a/module-emulator-viaccess.h b/module-emulator-viaccess.h
 new file mode 100644
-index 0000000..6f4afca
+index 00000000..6f4afcab
 --- /dev/null
 +++ b/module-emulator-viaccess.h
 @@ -0,0 +1,11 @@
@@ -9548,7 +9575,7 @@ index 0000000..6f4afca
 +#endif // MODULE_EMULATOR_VIACCESS_H
 diff --git a/module-emulator.c b/module-emulator.c
 new file mode 100644
-index 0000000..865e668
+index 00000000..865e6687
 --- /dev/null
 +++ b/module-emulator.c
 @@ -0,0 +1,894 @@
@@ -10447,7 +10474,7 @@ index 0000000..865e668
 +
 +#endif // WITH_EMU
 diff --git a/module-newcamd.c b/module-newcamd.c
-index 95fdae7..5514962 100644
+index 95fdae7e..5514962d 100644
 --- a/module-newcamd.c
 +++ b/module-newcamd.c
 @@ -1118,6 +1118,13 @@ static int8_t newcamd_auth_client(IN_ADDR_T ip, uint8_t *deskey)
@@ -10474,7 +10501,7 @@ index 95fdae7..5514962 100644
  						for(k = 0; k < aureader->nprov; k++)
  						{
 diff --git a/module-stat.c b/module-stat.c
-index ed0e85e..ee179b7 100644
+index ed0e85e4..ee179b79 100644
 --- a/module-stat.c
 +++ b/module-stat.c
 @@ -897,7 +897,7 @@ void check_lb_auto_betatunnel_mode(ECM_REQUEST *er)
@@ -10496,7 +10523,7 @@ index ed0e85e..ee179b7 100644
  				prv = ea;
  				continue; // proxy can convert or reject
 diff --git a/module-streamrelay.c b/module-streamrelay.c
-index 04866ba..2768457 100644
+index 04866ba5..27684575 100644
 --- a/module-streamrelay.c
 +++ b/module-streamrelay.c
 @@ -14,6 +14,12 @@
@@ -11619,7 +11646,7 @@ index 04866ba..2768457 100644
  {
  	int32_t i;
 diff --git a/module-streamrelay.h b/module-streamrelay.h
-index 71e97b5..6e83966 100644
+index 71e97b53..6e839660 100644
 --- a/module-streamrelay.h
 +++ b/module-streamrelay.h
 @@ -10,26 +10,47 @@
@@ -11732,7 +11759,7 @@ index 71e97b5..6e83966 100644
  
  #endif // MODULE_STREAMRELAY_H_
 diff --git a/module-webif-tpl.c b/module-webif-tpl.c
-index 29b9364..66ce02a 100644
+index 29b93646..66ce02a9 100644
 --- a/module-webif-tpl.c
 +++ b/module-webif-tpl.c
 @@ -455,6 +455,7 @@ char *tpl_getUnparsedTpl(const char *name, int8_t removeHeader, const char *subd
@@ -11744,7 +11771,7 @@ index 29b9364..66ce02a 100644
  										if(ok == 0)
  										{
 diff --git a/module-webif.c b/module-webif.c
-index 14e2b07..f7c929e 100644
+index 902f7de6..6c274777 100644
 --- a/module-webif.c
 +++ b/module-webif.c
 @@ -137,8 +137,9 @@ static bool use_srvid2 = false;
@@ -11771,7 +11798,7 @@ index 14e2b07..f7c929e 100644
  	tpl_printf(vars, TPLADD, "TMP", "STREAMRELAYENABLEDSELECTED%d", cfg.stream_relay_enabled);
  	tpl_addVar(vars, TPLADD, tpl_getVar(vars, "TMP"), "selected");
  
-@@ -2429,7 +2436,7 @@ static char *send_oscam_reader_config(struct templatevars *vars, struct uriparam
+@@ -2430,7 +2437,7 @@ static char *send_oscam_reader_config(struct templatevars *vars, struct uriparam
  		chk_reader("services", servicelabels, rdr);
  		chk_reader("lb_whitelist_services", servicelabelslb, rdr);
  
@@ -11780,7 +11807,7 @@ index 14e2b07..f7c929e 100644
  		{
  			if(rdr)
  				{
-@@ -3206,6 +3213,8 @@ static char *send_oscam_reader_config(struct templatevars *vars, struct uriparam
+@@ -3204,6 +3211,8 @@ static char *send_oscam_reader_config(struct templatevars *vars, struct uriparam
  	tpl_printf(vars, TPLADD, "RESHARE",      "%d", cfg.cc_reshare);
  	tpl_printf(vars, TPLADD, "CCCRECONNECT", "%d", rdr->cc_reconnect);
  
@@ -11789,7 +11816,7 @@ index 14e2b07..f7c929e 100644
  	if(rdr->cc_keepalive)
  		{ tpl_addVar(vars, TPLADD, "KEEPALIVECHECKED", "checked"); }
  #endif
-@@ -3243,6 +3252,23 @@ static char *send_oscam_reader_config(struct templatevars *vars, struct uriparam
+@@ -3241,6 +3250,23 @@ static char *send_oscam_reader_config(struct templatevars *vars, struct uriparam
  	tpl_addVar(vars, TPLADD, "USERSCRIPT", rdr->userscript);
  #endif
  
@@ -11813,7 +11840,7 @@ index 14e2b07..f7c929e 100644
  	tpl_addVar(vars, TPLADD, "PROTOCOL", reader_get_type_desc(rdr, 0));
  
  	// Show only parameters which needed for the reader
-@@ -3264,6 +3290,9 @@ static char *send_oscam_reader_config(struct templatevars *vars, struct uriparam
+@@ -3262,6 +3288,9 @@ static char *send_oscam_reader_config(struct templatevars *vars, struct uriparam
  	case R_CAMD35 :
  		tpl_addVar(vars, TPLAPPEND, "READERDEPENDINGCONFIG", tpl_getTpl(vars, "READERCONFIGCAMD35BIT"));
  		break;
@@ -11823,7 +11850,7 @@ index 14e2b07..f7c929e 100644
  	case R_CS378X :
  		tpl_addVar(vars, TPLAPPEND, "READERDEPENDINGCONFIG", tpl_getTpl(vars, "READERCONFIGCS378XBIT"));
  		break;
-@@ -5292,9 +5321,34 @@ static char *send_oscam_entitlement(struct templatevars *vars, struct uriparams
+@@ -5290,9 +5319,34 @@ static char *send_oscam_entitlement(struct templatevars *vars, struct uriparams
  
  					tpl_addVar(vars, TPLAPPEND, "LOGHISTORY", "<BR><BR>New Structure:<BR>");
  					char tbuffer[83];
@@ -11858,7 +11885,7 @@ index 14e2b07..f7c929e 100644
  						localtime_r(&item->start, &start_t);
  						localtime_r(&item->end, &end_t);
  
-@@ -5788,6 +5842,9 @@ static char *send_oscam_status(struct templatevars * vars, struct uriparams * pa
+@@ -5786,6 +5840,9 @@ static char *send_oscam_status(struct templatevars * vars, struct uriparams * pa
  						filtered = (type == cl->typ) || (type == 'x' && (cl->typ == 'p' || cl->typ == 'r') && (cl->reader && cl->reader->cacheex.mode));
  #else
  						filtered = (type == cl->typ);
@@ -11868,7 +11895,7 @@ index 14e2b07..f7c929e 100644
  #endif
  					}
  				}
-@@ -7361,6 +7418,9 @@ static char *send_oscam_files(struct templatevars * vars, struct uriparams * par
+@@ -7359,6 +7416,9 @@ static char *send_oscam_files(struct templatevars * vars, struct uriparams * par
  		{ "stats.info",      MNU_GBX_FSTAINF,   FTYPE_GBOX },     // id 27
  		{ "expired.info",    MNU_GBX_FEXPINF,   FTYPE_GBOX },     // id 28
  		{ "info.log",        MNU_GBX_INFOLOG,   FTYPE_GBOX },     // id 29
@@ -11878,7 +11905,7 @@ index 14e2b07..f7c929e 100644
  #endif
  		{ NULL, 0, 0 },
  	};
-@@ -7833,7 +7893,11 @@ static char *send_oscam_EMM_running(struct templatevars * vars, struct uriparams
+@@ -7831,7 +7891,11 @@ static char *send_oscam_EMM_running(struct templatevars * vars, struct uriparams
  		else if(!proxy && rdr->csystem_active)     // local active reader
  		{
  			csystem = rdr->csystem;
@@ -11891,7 +11918,7 @@ index 14e2b07..f7c929e 100644
  		}
  
  		if(csystem)
-@@ -9002,7 +9066,11 @@ static int32_t readRequest(FILE * f, IN_ADDR_T in, char **result, int8_t forcePl
+@@ -9000,7 +9064,11 @@ static int32_t readRequest(FILE * f, IN_ADDR_T in, char **result, int8_t forcePl
  		memcpy(*result + bufsize, buf2, n);
  		bufsize += n;
  
@@ -11904,7 +11931,7 @@ index 14e2b07..f7c929e 100644
  			cs_log("error: too much data received from %s", cs_inet_ntoa(in));
  			NULLFREE(*result);
 diff --git a/oscam-chk.c b/oscam-chk.c
-index b379153..5caf94f 100644
+index b3791534..5caf94fa 100644
 --- a/oscam-chk.c
 +++ b/oscam-chk.c
 @@ -894,7 +894,7 @@ int32_t matching_reader(ECM_REQUEST *er, struct s_reader *rdr)
@@ -11944,10 +11971,10 @@ index b379153..5caf94f 100644
  		return 1; // reader caid is not real caid
  	}
 diff --git a/oscam-config-global.c b/oscam-config-global.c
-index 22255e9..74e4e97 100644
+index bd6178f0..4c8adbf5 100644
 --- a/oscam-config-global.c
 +++ b/oscam-config-global.c
-@@ -929,6 +929,10 @@ static const struct config_list streamrelay_opts[] =
+@@ -930,6 +930,10 @@ static const struct config_list streamrelay_opts[] =
  	DEF_OPT_INT8("stream_relay_enabled"          , OFS(stream_relay_enabled),         0),
  	DEF_OPT_UINT32("stream_relay_buffer_time"    , OFS(stream_relay_buffer_time),     0),
  	DEF_OPT_UINT8("stream_relay_reconnect_count" , OFS(stream_relay_reconnect_count), 0),
@@ -11959,7 +11986,7 @@ index 22255e9..74e4e97 100644
  	DEF_LAST_OPT
  };
 diff --git a/oscam-config-reader.c b/oscam-config-reader.c
-index a813e98..8f43877 100644
+index 786b3198..b3e98dbf 100644
 --- a/oscam-config-reader.c
 +++ b/oscam-config-reader.c
 @@ -114,6 +114,7 @@ static void protocol_fn(const char *token, char *value, void *setting, FILE *f)
@@ -11999,7 +12026,7 @@ index a813e98..8f43877 100644
  #endif
  	DEF_OPT_INT8("resetalways"                    , OFS(resetalways),                     0),
  	DEF_OPT_INT8("deprecated"                     , OFS(deprecated),                      0),
-@@ -1339,7 +1348,7 @@ static bool reader_check_setting(const struct config_list *UNUSED(clist), void *
+@@ -1338,7 +1347,7 @@ static bool reader_check_setting(const struct config_list *UNUSED(clist), void *
  	// These are written only when the reader is CCCAM
  	static const char *cccam_settings[] =
  	{
@@ -12009,7 +12036,7 @@ index a813e98..8f43877 100644
  		0
  	};
 diff --git a/oscam-config.h b/oscam-config.h
-index b0179dd..e66a1aa 100644
+index b0179dd8..e66a1aa1 100644
 --- a/oscam-config.h
 +++ b/oscam-config.h
 @@ -64,6 +64,7 @@ enum ftab_fn
@@ -12021,7 +12048,7 @@ index b0179dd..e66a1aa 100644
  };
  
 diff --git a/oscam-ecm.c b/oscam-ecm.c
-index cadd2de..9ded1fb 100644
+index cadd2de9..9ded1fbd 100644
 --- a/oscam-ecm.c
 +++ b/oscam-ecm.c
 @@ -1817,6 +1817,10 @@ int32_t write_ecm_answer(struct s_reader *reader, ECM_REQUEST *er, int8_t rc, ui
@@ -12067,7 +12094,7 @@ index cadd2de..9ded1fb 100644
  		cs_log_dbg(D_TRACE, "warning: ecm with null odd/even byte from %s", (check_client(er->client) ? er->client->account->usr : "-"));
  		er->rc = E_INVALID;
 diff --git a/oscam-emm.c b/oscam-emm.c
-index 848fa34..65ba29c 100644
+index 7508a0ff..dc85a35c 100644
 --- a/oscam-emm.c
 +++ b/oscam-emm.c
 @@ -40,6 +40,7 @@ static int8_t cs_emmlen_is_blocked(struct s_reader *rdr, int16_t len)
@@ -12104,7 +12131,7 @@ index 848fa34..65ba29c 100644
  	{
  		rdr_log_dbg(reader, D_EMM, "reader auprovid = %06X matching with emm provid = %06X -> SEND!", prid, provid);
 diff --git a/oscam-simples.c b/oscam-simples.c
-index 576804c..6e1c713 100644
+index 576804c9..6e1c7137 100644
 --- a/oscam-simples.c
 +++ b/oscam-simples.c
 @@ -468,6 +468,8 @@ const char *get_cardsystem_desc_by_caid(uint16_t caid)
@@ -12125,7 +12152,7 @@ index 576804c..6e1c713 100644
  	return "unknown";
  }
 diff --git a/oscam.c b/oscam.c
-index 7b6395d..175595a 100644
+index 7b6395db..175595a8 100644
 --- a/oscam.c
 +++ b/oscam.c
 @@ -41,6 +41,10 @@
@@ -12169,7 +12196,7 @@ index 7b6395d..175595a 100644
  	cfg.account = init_userdb();
  	init_signal();
 diff --git a/reader-common.c b/reader-common.c
-index efdd19b..2c8fc7d 100644
+index efdd19b3..2c8fc7dd 100644
 --- a/reader-common.c
 +++ b/reader-common.c
 @@ -15,6 +15,7 @@
@@ -12200,7 +12227,7 @@ index efdd19b..2c8fc7d 100644
  	{
  		NULLFREE(reader->csystem_data);
 diff --git a/readers.h b/readers.h
-index eec350e..316c2be 100644
+index eec350e9..316c2bea 100644
 --- a/readers.h
 +++ b/readers.h
 @@ -17,5 +17,6 @@ extern const struct s_cardsystem reader_tongfang;
@@ -12211,7 +12238,7 @@ index eec350e..316c2be 100644
  
  #endif
 diff --git a/webif/config/streamrelay.html b/webif/config/streamrelay.html
-index 7845002..ff7632e 100644
+index 78450028..ff7632e0 100644
 --- a/webif/config/streamrelay.html
 +++ b/webif/config/streamrelay.html
 @@ -18,3 +18,4 @@
@@ -12221,7 +12248,7 @@ index 7845002..ff7632e 100644
 +##TPLSTREAMEMUSETTINGS##
 diff --git a/webif/config/streamrelay_emusettings.html b/webif/config/streamrelay_emusettings.html
 new file mode 100644
-index 0000000..dcb0618
+index 00000000..dcb0618b
 --- /dev/null
 +++ b/webif/config/streamrelay_emusettings.html
 @@ -0,0 +1,9 @@
@@ -12235,7 +12262,7 @@ index 0000000..dcb0618
 +			</TR>
 +			<TR><TD><A>ECM fix delay (emu):</A></TD><TD><input name="stream_ecm_delay" class="short" type="text" maxlength="5" value="##STREAM_ECM_DELAY##"><label> ms (delay for PowerVU processing)</label></TD></TR>
 diff --git a/webif/files/menu.html b/webif/files/menu.html
-index 4dc6f02..2e4e6b6 100644
+index 4dc6f02e..2e4e6b62 100644
 --- a/webif/files/menu.html
 +++ b/webif/files/menu.html
 @@ -10,7 +10,7 @@
@@ -12257,13 +12284,13 @@ index 4dc6f02..2e4e6b6 100644
  	</UL>
 diff --git a/webif/files/menu_softcamkey.html b/webif/files/menu_softcamkey.html
 new file mode 100644
-index 0000000..cf71877
+index 00000000..cf718779
 --- /dev/null
 +++ b/webif/files/menu_softcamkey.html
 @@ -0,0 +1 @@
 +			<LI CLASS="##CMENUACTIVE30##"><A HREF="files.html?file=SoftCam.Key">SoftCam.Key</A></LI>
 diff --git a/webif/pages_index.txt b/webif/pages_index.txt
-index a1f3336..1ad642f 100644
+index a1f3336d..1ad642f7 100644
 --- a/webif/pages_index.txt
 +++ b/webif/pages_index.txt
 @@ -1,10 +1,10 @@
@@ -12313,10 +12340,10 @@ index a1f3336..1ad642f 100644
  READERCONFIGGBOXBIT           readerconfig/readerconfig_gboxbit.html                      MODULE_GBOX
  READERINFOGBOXREMM            readerconfig/readerinfo_gbox_remm.html                      MODULE_GBOX
 diff --git a/webif/readerconfig/readerconfig_cccambit.html b/webif/readerconfig/readerconfig_cccambit.html
-index 8e38bc6..82fba33 100644
+index 3812bec7..85232402 100644
 --- a/webif/readerconfig/readerconfig_cccambit.html
 +++ b/webif/readerconfig/readerconfig_cccambit.html
-@@ -31,4 +31,5 @@
+@@ -22,4 +22,5 @@
  			<TR><TD><A>Maxhop:</A></TD><TD><input name="cccmaxhops" class="short" type="text" maxlength="2" value="##CCCMAXHOPS##"></TD></TR>
  			<TR><TD><A>Mindown:</A></TD><TD><input name="cccmindown" class="short" type="text" maxlength="2" value="##CCCMINDOWN##"></TD></TR>
  			<TR><TD><A>Reshare:</A></TD><TD><input name="cccreshare" class="short" type="text" maxlength="2" value="##CCCRESHARE##">				&nbsp;Global CCCam Reshare:<SPAN CLASS="global_conf" TITLE="This value is used if Reshare = -1"><A HREF="config.html?part=cccam">##RESHARE##</A></SPAN></TD></TR>
@@ -12324,7 +12351,7 @@ index 8e38bc6..82fba33 100644
  			<TR><TD><A>Keep alive:</A></TD><TD><input name="ccckeepalive" type="hidden" value="0"><input name="ccckeepalive" type="checkbox" value="1" ##KEEPALIVECHECKED##><label></label></TD></TR>
 diff --git a/webif/readerconfig/readerconfig_emubit.html b/webif/readerconfig/readerconfig_emubit.html
 new file mode 100644
-index 0000000..8c130b7
+index 00000000..8c130b7c
 --- /dev/null
 +++ b/webif/readerconfig/readerconfig_emubit.html
 @@ -0,0 +1,2 @@
